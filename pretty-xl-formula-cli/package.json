@@ -1,6 +1,6 @@
 {
-  "name": "formulas",
-  "version": "1.0.0",
+  "name": "pretty-xl-formula-cli",
+  "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,6 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {}
 }

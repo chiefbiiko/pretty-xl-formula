@@ -1,4 +1,4 @@
-module.exports = function(formula) {
+module.exports = function pxlf(formula) {
   const chars = formula.replace(/\s/g, '').split('')
   var factor = 0
   return chars.reduce((acc, cur) => {
@@ -11,7 +11,7 @@ module.exports = function(formula) {
     } else if (cur === ',' || cur === ';') {
       acc += `${cur}\n${' '.repeat(factor)}`
     } else if (cur === '<' || cur === '>') {
-      acc += ` ${cur} ` 
+      acc += ` ${cur} `
     } else {
       acc += cur
     }
