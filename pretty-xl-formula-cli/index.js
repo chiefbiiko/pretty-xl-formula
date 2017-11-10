@@ -31,8 +31,8 @@ if (process.argv.slice(2).some(a => /--?h(elp)?/.test(a))) {
   process.stdin.pipe(prettifier).pipe(process.stdout)
   global.setTimeout(() => {
     if (process.stdout.bytesWritten === 0) {
-      console.error(help)
-      process.exit(1)
+      console.log(help)
+      process.exit(0)
     }
   }, 100)
 }
