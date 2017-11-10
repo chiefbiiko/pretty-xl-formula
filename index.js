@@ -28,12 +28,12 @@ module.exports = function pxlf(formula, opts) {
       acc += `\n${opts.indentType.repeat(factor)}${cur}`
     } else if (cur === ',' || cur === ';') {
       acc += `${cur}\n${opts.indentType.repeat(factor)}`
-    } else if (singleops.includes(cur)) {
-      acc += ` ${cur} `
     } else if (cur === '=' && /<|>\s*$/.test(acc) ||
                cur === '>' && /<\s*$/.test(acc)) {
       acc.replace(/\s*$/, '')
       acc += `${cur} `
+    } else if (singleops.includes(cur)) {
+      acc += ` ${cur} `
     } else {
       acc += cur
     }
