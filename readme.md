@@ -19,20 +19,27 @@ npm install --save pretty-xl-formula
 
 ## Usage
 
+### `prettify(formula[, opts])`
+
 Just pass a formula to the prettifier. The options object is optional, it defaults to the values shown below.
 
 ```js
 const prettify = require('pretty-xl-formula')
 const defaults = { indentType: ' ', indentLength: 2 }
-prettify('sum(A3,A4%A5)', opts=defaults)
+
+prettify('sum(A3,A4%A5)', defaults)
 // -> 'sum(\n  A3,\n  A4 % A5\n)'
 ```
 
-`pretty-xl-formula` also exposes a cli as `pxlf`. It is just a transform stream that takes input from files and stdin and can be integrated into ordinary pipelines. May want to install this module globally if you plan on using this cli regularly.
+### CLI
+
+`pretty-xl-formula` also exposes a cli as `pxlf`. It is just a transform stream that reads input from files or stdin and writes output to stdout. May want to install this module globally if you plan on using `pxlf` regularly.
 
 ```
 cat xlformula.txt | pxlf -il=4 > pretty.txt
 ```
+
+Check out `pxlf -h` for more usage examples.
 
 ***
 
