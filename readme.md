@@ -23,8 +23,15 @@ Just pass a formula to the prettifier. The options object is optional, it defaul
 
 ```js
 const prettify = require('pretty-xl-formula')
-prettify('sum(A3,A4%A5)', { indentType: ' ', indentLength: 2 }) // default opts
+const defaults = { indentType: ' ', indentLength: 2 }
+prettify('sum(A3,A4%A5)', opts=defaults)
 // -> 'sum(\n  A3,\n  A4 % A5\n)'
+```
+
+`pretty-xl-formula` also exposes a cli as `pxlf`. It is just a transform stream that takes input from files and stdin and can be integrated into ordinary pipelines. May want to install this module globally if you plan on using this cli regularly.
+
+```
+cat xlformula.txt | pxlf -il=4 > pretty.txt
 ```
 
 ***

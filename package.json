@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "Prettify excel formulas",
   "main": "index.js",
+  "bin": {
+    "pxlf": "./cli.js"
+  },
   "scripts": {
     "style": "./node_modules/.bin/standard --fix",
     "test": "./node_modules/.bin/mocha"
