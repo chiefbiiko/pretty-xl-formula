@@ -1,25 +1,23 @@
-const be = require('./be')
+const be = require('be-of-type')
 const is = {
   plainObject: be.plainObject,
-  string: be.string,
+  truthyString: x => be.string(x) && x.length,
   uInt: x => be.number(x) && x >= 0 && x % 1 === 0
 }
 
-module.exports = function pxlf(formula, opts) {
+module.exports = function prettifier (formula, opts) {
   // setup
   const singleops = [ '+', '*', '-', '/', '%', '^', '=', '<', '>', '&' ]
   if (!is.plainObject(opts)) opts = {}
-  if (!is.string(opts.indentType)) opts.indentType = ' '
+  if (!is.truthyString(opts.indentType)) opts.indentType = ' '
   if (!is.uInt(opts.indentLength)) opts.indentLength = 2
   // preprocessing
   const chars = formula
-    .replace(/(\d)\s+([A-Z])/g,'$1#$2')
-    .replace(/\s/g, '')
-    .replace(/#/g, ' ')
+    .replace(/(\d)\s+([A-Z])/g, '$1#$2').replace(/\s/g, '').replace(/#/g, ' ')
     .split('')
   // reducing
   var factor = 0
-  return chars.reduce((acc, cur) => {
+  return chars.reduce(function (acc, cur) {
     if (cur === '(') {
       factor += opts.indentLength
       acc += `${cur}\n${opts.indentType.repeat(factor)}`
@@ -28,8 +26,8 @@ module.exports = function pxlf(formula, opts) {
       acc += `\n${opts.indentType.repeat(factor)}${cur}`
     } else if (cur === ',' || cur === ';') {
       acc += `${cur}\n${opts.indentType.repeat(factor)}`
-    } else if (cur === '=' && /<|>\s*$/.test(acc) ||
-               cur === '>' && /<\s*$/.test(acc)) {
+    } else if ((cur === '>' && /<\s*$/.test(acc)) ||
+               (cur === '=' && /<|>\s*$/.test(acc))) {
       acc.replace(/\s*$/, '')
       acc += `${cur} `
     } else if (singleops.includes(cur)) {
