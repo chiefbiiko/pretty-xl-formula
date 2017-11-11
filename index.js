@@ -5,7 +5,7 @@ const is = {
   uInt: x => be.number(x) && x >= 0 && x % 1 === 0
 }
 
-module.exports = function prettifier (formula, opts) {
+module.exports = function prettify (formula, opts) {
   // setup
   const singleops = [ '+', '*', '-', '/', '%', '^', '=', '<', '>', '&' ]
   if (!is.plainObject(opts)) opts = {}
