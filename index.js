@@ -27,8 +27,7 @@ module.exports = function prettify (formula, opts) {
       acc += `${cur}\n${opts.indentType.repeat(factor)}`
     } else if ((cur === '>' && /<\s*$/.test(acc)) ||
                (cur === '=' && /<|>\s*$/.test(acc))) {
-      acc.replace(/\s*$/, '')
-      acc += `${cur} `
+      acc = acc.replace(/\s*$/, '').concat(`${cur} `)
     } else if (singleops.includes(cur)) {
       acc += ` ${cur} `
     } else {

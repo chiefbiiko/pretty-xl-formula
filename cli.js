@@ -4,6 +4,16 @@ const fs = require('fs')
 const { Readable, Transform } = require('stream')
 const prettify = require('./index')
 
+const pxlf = new Transform({
+  transform (chunk, _, next) {
+    this.push(prettify(chunk.toString(), {
+      indentType: ' ',
+      indentLength: il
+    }))
+    next()
+  }
+})
+
 const line = process.argv.slice(2).join(' ')
 const il = /i(ndent)?l(ength)?=\d/i.test(line) ?
   parseInt(line.replace(/^.+i(ndent)?l(ength)?=(\d+).*$/i, '$3')) || 2 : 2
@@ -14,13 +24,6 @@ const makeReadable = x => {
   r.push(null)
   return r
 }
-
-const pxlf = new Transform({
-  transform (chunk, _, next) {
-    this.push(prettify(chunk.toString(), { indentType: ' ', indentLength: il }))
-    next()
-  }
-})
 
 const help = 'usage:\n    pxlf file\n  or\n' + '    pxlf < file\n  or\n' +
              '    echo sum(A2,A3) | pxlf\n  or\n' +
