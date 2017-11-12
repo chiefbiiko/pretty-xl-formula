@@ -1,23 +1,22 @@
 const be = require('be-of-type')
 const is = {
-  plainObject: be.plainObject,
+  pojo: be.plainObject,
   truthyString: x => be.string(x) && x.length,
   uInt: x => be.number(x) && x >= 0 && x % 1 === 0
 }
 
 module.exports = function prettify (formula, opts) {
-  // setup
   const singleops = [ '+', '*', '-', '/', '%', '^', '=', '<', '>', '&' ]
-  if (!is.plainObject(opts)) opts = {}
+  if (!is.pojo(opts)) opts = {}
   if (!is.truthyString(opts.indentType)) opts.indentType = ' '
   if (!is.uInt(opts.indentLength)) opts.indentLength = 2
-  // preprocessing
+  // split
   const chars = formula
     .replace(/(\d)\s+([A-Z])/g, '$1#$2').replace(/\s/g, '').replace(/#/g, ' ')
     .split('')
-  // reducing
+  // apply, combine
   var factor = 0
-  return chars.reduce(function (acc, cur) {
+  return chars.reduce((acc, cur) => {
     if (cur === '(') {
       factor += opts.indentLength
       acc += `${cur}\n${opts.indentType.repeat(factor)}`
