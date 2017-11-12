@@ -33,7 +33,15 @@ prettify('sum(A3,A4%A5)', defaults)
 
 ### CLI
 
-`pretty-xl-formula` also exposes a cli as `pxlf`. It is just a transform stream that reads input from files or stdin and writes output to stdout. May want to install this module globally if you plan on using `pxlf` regularly.
+`pretty-xl-formula` also exposes a cli as `pxlf`. It is just a transform stream that reads input from files or stdin and writes output to stdout.
+
+You should install `pretty-xl-formula` globally to get the cli on your path instantly.
+
+```
+npm install -g pretty-xl-formula
+```
+
+Now you can do stuff like...
 
 ```
 cat xlformula.txt | pxlf -il=4 > pretty.txt
