@@ -5,8 +5,8 @@ const { Readable, Transform } = require('stream')
 const prettify = require('./index')
 
 const line = process.argv.slice(2).join(' ')
-const il = /i(ndent)?l(ength)?=\d/i.test(line) ? 
-  parseInt(line.replace(/^.+i(ndent)?l(ength)?=(\d+).*$/i, '$3')) || 2 : 2
+const il = /i(ndent)?l(ength)?=\d/i.test(line)
+  ? parseInt(line.replace(/^.+i(ndent)?l(ength)?=(\d+).*$/i, '$3')) || 2 : 2
 
 const pxlf = new Transform({
   transform (chunk, _, next) {
