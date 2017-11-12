@@ -1,6 +1,6 @@
 {
   "name": "pretty-xl-formula",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Prettify excel formulas",
   "main": "index.js",
   "bin": {

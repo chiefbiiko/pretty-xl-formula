@@ -4,6 +4,10 @@ const fs = require('fs')
 const { Readable, Transform } = require('stream')
 const prettify = require('./index')
 
+const line = process.argv.slice(2).join(' ')
+const il = /i(ndent)?l(ength)?=\d/i.test(line) ? 
+  parseInt(line.replace(/^.+i(ndent)?l(ength)?=(\d+).*$/i, '$3')) || 2 : 2
+
 const pxlf = new Transform({
   transform (chunk, _, next) {
     this.push(prettify(chunk.toString(), {
@@ -13,10 +17,6 @@ const pxlf = new Transform({
     next()
   }
 })
-
-const line = process.argv.slice(2).join(' ')
-const il = /i(ndent)?l(ength)?=\d/i.test(line)
-  ? parseInt(line.replace(/^.+i(ndent)?l(ength)?=(\d+).*$/i, '$3')) || 2 : 2
 
 const makeReadable = x => {
   const r = new Readable()
@@ -31,7 +31,7 @@ const help = 'usage:\n    pxlf file\n  or\n' + '    pxlf < file\n  or\n' +
              '  or\n    pxlf -il=4 sum(B5,B7)\n\n' +
              '  file: text file containing an excel formula\n' +
              '  -il: indent length, defaults to -il=2\n\n' +
-             '  when using this cli indent type is always " ".\n'
+             '  when using this cli indent type always is " ".\n'
 
 if (process.argv.slice(2).some(a => /--?h(elp)?/.test(a))) {
   makeReadable(help).pipe(process.stdout)
