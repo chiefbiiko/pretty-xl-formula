@@ -39,7 +39,25 @@ prettify('sum(A3,A4%A5)', defaults)
 cat xlformula.txt | pxlf -il=4 > pretty.txt
 ```
 
-Check out `pxlf -h` for more usage examples.
+Check out `pxlf -h`.
+
+```
+usage:
+    pxlf file
+  or
+    pxlf < file
+  or
+    echo sum(A2,A3) | pxlf
+  or
+    cat file | pxlf > pretty.txt
+  or
+    pxlf -il=4 sum(B5,B7)
+
+  file: text file containing an excel formula
+  -il: indent length, defaults to -il=2
+
+  when using this cli indent type always is " "
+```
 
 ***
 

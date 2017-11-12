@@ -31,7 +31,7 @@ const help = 'usage:\n    pxlf file\n  or\n' + '    pxlf < file\n  or\n' +
              '  or\n    pxlf -il=4 sum(B5,B7)\n\n' +
              '  file: text file containing an excel formula\n' +
              '  -il: indent length, defaults to -il=2\n\n' +
-             '  when using this cli indent type always is " ".\n'
+             '  when using this cli indent type always is " "\n'
 
 if (process.argv.slice(2).some(a => /--?h(elp)?/.test(a))) {
   makeReadable(help).pipe(process.stdout)
