@@ -15,8 +15,8 @@ const pxlf = new Transform({
 })
 
 const line = process.argv.slice(2).join(' ')
-const il = /i(ndent)?l(ength)?=\d/i.test(line) ?
-  parseInt(line.replace(/^.+i(ndent)?l(ength)?=(\d+).*$/i, '$3')) || 2 : 2
+const il = /i(ndent)?l(ength)?=\d/i.test(line)
+  ? parseInt(line.replace(/^.+i(ndent)?l(ength)?=(\d+).*$/i, '$3')) || 2 : 2
 
 const makeReadable = x => {
   const r = new Readable()
