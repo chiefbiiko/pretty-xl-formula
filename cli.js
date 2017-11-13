@@ -28,7 +28,7 @@ const makeReadable = x => {
 const help = 'usage:\n    pxlf file\n  or\n' + '    pxlf < file\n  or\n' +
              '    echo sum(A2,A3) | pxlf\n  or\n' +
              '    cat file | pxlf > pretty.txt\n' +
-             '  or\n    pxlf -il=4 sum(B5,B7)\n\n' +
+             '  or\n    pxlf -il=4 sum(B5,B7)\n  or\n    ...\n\n' +
              '  file: text file containing an excel formula\n' +
              '  -il: indent length, defaults to -il=2\n\n' +
              '  when using this cli indent type always is " "\n'

@@ -60,6 +60,8 @@ usage:
     cat file | pxlf > pretty.txt
   or
     pxlf -il=4 sum(B5,B7)
+  or
+    ...
 
   file: text file containing an excel formula
   -il: indent length, defaults to -il=2
