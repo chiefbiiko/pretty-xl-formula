@@ -15,7 +15,7 @@
     "formula",
     "prettifier",
     "pretty-printing"
-  ],
+, "prettify"  ],
   "author": "Noah Anabiik Schwarz",
   "license": "MIT",
   "repository": {
